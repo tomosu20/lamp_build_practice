@@ -40,18 +40,18 @@ services:
       - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   container_name: app_pma
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=mysql
-  #     - PMA_USER=root
-  #     - PMA_PASSWORD=root
-  #   links:
-  #     - mysql
-  #   ports:
-  #     - 8080:80
-  #   volumes:
-  #     - /sessions
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: app_pma
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - db
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
